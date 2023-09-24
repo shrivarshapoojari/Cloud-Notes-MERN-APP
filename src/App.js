@@ -2,7 +2,7 @@ import React from 'react'
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import About from './components/About';
- 
+
 import {
 
   BrowserRouter,
@@ -13,27 +13,30 @@ import NoteState from './context/notes/NoteState';
 export default function App() {
   return (
     <>
-    <NoteState>
-     
+      <NoteState>
+
         <BrowserRouter>
-      
+
           <Navbar />
-          <Routes>
+          <div className="container">
+      
+            <Routes>
+            
+              <Route exact path="/home" element={<Home />} />
+              <Route exact path="/about" element={<About />} />
           
-            <Route exact path="/home" element={<Home/>} />
-            <Route exact path="/about" element={<About/>} />
-           
 
-          </Routes>
+            </Routes>
+            </div>
 
 
 
 
 
-         
+
         </BrowserRouter>
-     
-        </NoteState>
+
+      </NoteState>
 
     </>
   )

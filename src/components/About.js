@@ -6,12 +6,12 @@ import NoteContext from '../context/notes/NoteContext'
 
 const About= () =>{
 
-  const a = useContext(NoteContext)
+ 
   
    
   return (
     <div>
-      this is about {a.state.name}  and he is in class {a.state.class}
+       About
       
     </div>
   )
