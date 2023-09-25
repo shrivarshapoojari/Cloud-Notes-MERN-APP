@@ -7,21 +7,27 @@ const AddNote = () => {
 
     const context = useContext(NoteContext)
     const { addNote } = context;
-    
-    const [note,setNote] = useState({
-        title: "",
-        description: ""
+
+    const [note, setNote] = useState({
+        title: "hi hello ",
+        description:"tester1234",
+        tag:"erfgtgbgg"
     })
     const onChange = (e) => {
         setNote({
             ...note, [e.target.name]: e.target.value
         })
-       }
+    }
 
-       const handleAddNotes = (e) => {
+    const handleAddNotes = (e) => {
         e.preventDefault();
-        addNote(note.title, note.description, note.tag);
-    }   
+        let obj = {
+            title: note.title,
+            description: note.description,
+            tag: note.tag
+        }
+        addNote(obj);
+    }
 
 
 
