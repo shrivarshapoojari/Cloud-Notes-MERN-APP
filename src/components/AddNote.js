@@ -18,7 +18,7 @@ const AddNote = () => {
             ...note, [e.target.name]: e.target.value
         })
     }
-
+    const isButtonDisabled = (note.title.length < 5 || note.description.length < 5) && (note.title!==" "||note.tag!==" "||note.title!==" ");
     const handleAddNotes = async(e) => {
         e.preventDefault();
         
@@ -31,12 +31,14 @@ const AddNote = () => {
         
          await addNote(obj);
          setNote({
-            title:"",
-            description:"",
-            tag:""
+            title:" ",
+            description:" ",
+            tag:" "
         })
         
     }
+  
+
 
 
 
@@ -61,7 +63,13 @@ const AddNote = () => {
                         </div>
 
 
-                        <button type="submit" disabled={note.title.length<5 || note.description.length<5} className="btn btn-primary" onClick={handleAddNotes}>Add Note</button>
+                        <button type="submit" disabled={note.title.length<5 || note.description.length<5} className="btn btn-primary" onClick={handleAddNotes} title={isButtonDisabled ? "Title and Description must be at least 5 characters long" : "" }>Add Note</button>
+                       <div className="container" style={{height:"10px"}}>
+                        {isButtonDisabled && (
+                              <p style={{ color: 'red' }}>
+                            Title and Description must be at least 5 characters long
+                                  </p>)}
+                        </div>
                         
                     </form>
                 </div>

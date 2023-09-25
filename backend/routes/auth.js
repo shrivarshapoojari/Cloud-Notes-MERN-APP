@@ -103,12 +103,12 @@ router.post('/login',async(req,res)=>{
           let user=await User.findOne({email})
           if(!user)
           {
-            return res.status(400).json({error:"Credentials are Not Mactching"})
+            return res.status(400).json({success:false,error:"Credentials are Not Mactching"})
           }
           const passwordCompare= await bcrypt.compare(password,user.password)
           if(!passwordCompare)
           {
-            return res.status(400).json({error:"Credentials are Not Mactching"})
+            return res.status(400).json({ success:false,error:"Credentials are Not Mactching"})
           }
           const data={
             user:{
@@ -116,7 +116,8 @@ router.post('/login',async(req,res)=>{
             }
           }
           const authtoken=jwt.sign(data,JWT_SECRET)
-           res.json(authtoken);
+          
+           res.json({success:true,authtoken:authtoken});
         }  catch(e)
         {
          console.log(e);
