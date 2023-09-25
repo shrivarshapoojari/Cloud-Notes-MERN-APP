@@ -51,18 +51,18 @@ const Notes = () => {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Your Note</h1>
-                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
                         </div>
                         <div className="modal-body">
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name='etitle' value={note.etitle} aria-describedby="emailHelp" onChange={onChange} />
+                                    <input type="text" className="form-control" id="etitle" name='etitle' value={note.etitle} aria-describedby="emailHelp" onChange={onChange}/>
 
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} aria-describedby="emailHelp" onChange={onChange} />
+                                    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} aria-describedby="emailHelp" onChange={onChange}   />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tags</label>
@@ -77,13 +77,16 @@ const Notes = () => {
                         </div>
                         <div className="modal-footer">
                             <button type="button"  ref={refclose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" className="btn btn-primary" onClick={handleUpdateNotes}>Save changes</button>
+                            <button type="button" disabled={ note.etitle.length<5 || note.edescription.length<5} className="btn btn-primary" onClick={handleUpdateNotes}>Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="row my-3">
                 <h1>Your Notes</h1>
+                <div className="container mx-2">
+               {notes.length===0  &&  'No Notes To Display!'}
+               </div>
                 {notes.map((ele) => {
                     return <NoteItem  key={ele._id}note={ele} updateNote={updateNote} />
                 })}

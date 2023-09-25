@@ -55,7 +55,7 @@ const getNotes=async ()=>{
                  body: JSON.stringify(obj),
             });
             const json = await response.json()
-            console.log(json);
+            
            }
 
 
@@ -75,7 +75,7 @@ const getNotes=async ()=>{
         
     });
     const json = await response.json()
-    console.log(json);
+    
 
 
 
@@ -101,7 +101,7 @@ const getNotes=async ()=>{
             body: JSON.stringify({title,description,tag}),
         });
         const json = await response.json()
-        console.log(json);
+        
 
 
         // logic to display on client side

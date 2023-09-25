@@ -21,16 +21,21 @@ const AddNote = () => {
 
     const handleAddNotes = async(e) => {
         e.preventDefault();
-        console.log('start')
-        console.log(note.tag)
+        
+        
         let obj = {
             title: note.title,
             description: note.description,
             tag: note.tag
         }
-        console.log(obj)
+        
          await addNote(obj);
-        console.log('end')
+         setNote({
+            title:"",
+            description:"",
+            tag:""
+        })
+        
     }
 
 
@@ -43,20 +48,21 @@ const AddNote = () => {
                     <form>
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label">Title</label>
-                            <input type="text" className="form-control" id="title" name='title' aria-describedby="emailHelp" onChange={onChange} />
+                            <input type="text" className="form-control" id="title" name='title' aria-describedby="emailHelp" onChange={onChange} value={note.title}  />
 
                         </div>
                         <div className="mb-3">
                             <label htmlFor="description" className="form-label">Description</label>
-                            <input type="text" className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange} />
+                            <input type="text" className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange}  value={note.description} />
                         </div>
                         <div className="mb-3">
                             <label htmlFor="tag" className="form-label">Tags</label>
-                            <input type="text" className="form-control" id="tag" name='tag' aria-describedby="emailHelp" onChange={onChange} />
+                            <input type="text" className="form-control" id="tag" name='tag' aria-describedby="emailHelp" onChange={onChange}  value={note.tag}  />
                         </div>
 
 
-                        <button type="submit" className="btn btn-primary" onClick={handleAddNotes}>Add Note</button>
+                        <button type="submit" disabled={note.title.length<5 || note.description.length<5} className="btn btn-primary" onClick={handleAddNotes}>Add Note</button>
+                        
                     </form>
                 </div>
 
