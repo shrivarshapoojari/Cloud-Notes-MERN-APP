@@ -26,7 +26,7 @@ const getNotes=async ()=>{
         
     });
     const json = await response.json()
-    console.log(json);
+     
     setNotes(json);
    }
   
@@ -40,8 +40,9 @@ const getNotes=async ()=>{
 
 
 
+
     // Add note
-    const addNote =async(obj) => {
+       const addNote =async(obj) => {
 
             //------------------------------------------------API CALL--------------------------------------------------
 
@@ -86,20 +87,20 @@ const getNotes=async ()=>{
 
 
     // Edit Notes----------------------------------------------------------------------------------------
-    const editNote = async (id, title, description, tag) => {
+    const editNote = async ({id,title,description,tag}) => {
 
         // api call----------------------------------------------------------------------------------------------------------
 
         const response = await fetch(`${host}/api/notes/updatenotes/${id}`, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
                 "auth-token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUxMTMwYzZlMGZjNWJhMjViYjBiNTZlIn0sImlhdCI6MTY5NTYyNTQxNH0.7rX2YdTCNSfXXAS_OmZj8dLpGeNGYnrYJuGMkQS5u8I"
             },
 
-            body: JSON.stringify(title, description, tag),
+            body: JSON.stringify({title,description,tag}),
         });
-        const json = response.json()
+        const json = await response.json()
         console.log(json);
 
 

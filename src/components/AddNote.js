@@ -8,10 +8,10 @@ const AddNote = () => {
     const context = useContext(NoteContext)
     const { addNote } = context;
 
-    const [note, setNote] = useState({
-        title: "hi hello ",
-        description:"tester1234",
-        tag:"erfgtgbgg"
+    const [note,setNote] = useState({
+        title:" ",
+        description:" ",
+        tag:" "
     })
     const onChange = (e) => {
         setNote({
@@ -19,14 +19,18 @@ const AddNote = () => {
         })
     }
 
-    const handleAddNotes = (e) => {
+    const handleAddNotes = async(e) => {
         e.preventDefault();
+        console.log('start')
+        console.log(note.tag)
         let obj = {
             title: note.title,
             description: note.description,
             tag: note.tag
         }
-        addNote(obj);
+        console.log(obj)
+         await addNote(obj);
+        console.log('end')
     }
 
 
@@ -48,7 +52,7 @@ const AddNote = () => {
                         </div>
                         <div className="mb-3">
                             <label htmlFor="tag" className="form-label">Tags</label>
-                            <input type="text" className="form-control" id="tag" name='tags' aria-describedby="emailHelp" onChange={onChange} />
+                            <input type="text" className="form-control" id="tag" name='tag' aria-describedby="emailHelp" onChange={onChange} />
                         </div>
 
 
