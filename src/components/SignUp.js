@@ -29,22 +29,26 @@ const SignUp = (props) => {
         });
         const json = await response.json()
         console.log(json)
-        if(json.success==='true'){
+        if(json.success===true){
                // save authtoken and redirect
-               localStorage.setItem('token',json.authtoken)
-               navigate('/');
+            
+              window.localStorage.setItem('token',json.authtoken)
+              
+               navigate('/home');
                props.showAlert("Account Created Succesfully","success")
         }
 
-        if(json.success==='false'){
+        if(json.success===false){
+          window.localStorage.setItem('token',null)
             props.showAlert("Invalid Credentials","danger")
+
         }
 
       }
 
   return (
     < div className='container'>
-        
+          <h1 className='my-2'>Please Sign Up to continue to Cloud Note</h1>
             <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>

@@ -48,7 +48,7 @@ router.post('/createuser',async (req,res)=>{
         email:req.body.email
        })
         console.log("Successfuly saved");
-        res.status(200).json({success:true,message:"User Created"})
+        // res.status(200).json({success:true,message:"User Created"})
          
     }
    catch(e)
@@ -62,7 +62,7 @@ router.post('/createuser',async (req,res)=>{
   }
 }
 // generating jwt token
-
+try{
 
   const user=  await User.findOne({name:req.body.name})
   const data={
@@ -71,7 +71,12 @@ router.post('/createuser',async (req,res)=>{
     }
   }
   const authtoken=jwt.sign(data,JWT_SECRET)
-   res.json(authtoken);
+   res.json({success:true,authtoken:authtoken});
+}
+catch(e)
+{
+  res.json({success:false,message:"Token Generation failed"})
+}
      
 
 })

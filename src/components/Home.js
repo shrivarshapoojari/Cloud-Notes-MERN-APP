@@ -7,7 +7,7 @@ const Home = (props) => {
   return (
    <>
 
-<Notes showAlert={props.showAlert}/>
+     <Notes showAlert={props.showAlert}/>
    </>
   )
 }

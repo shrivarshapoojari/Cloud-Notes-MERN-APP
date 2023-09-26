@@ -3,11 +3,11 @@ import { useContext, useState } from 'react'
 import NoteContext from '../context/notes/NoteContext'
 import NoteItem from './NoteItem'
 import AddNote from './AddNote'
-
+import { useNavigate } from 'react-router-dom'
 
 const Notes = (props) => {
     const [note, setNote] = useState({id:"", etitle: "", edescription:"",etag:"" });
-
+    let navigate=useNavigate();
     const onChange = (e) => {
         setNote({
             ...note, [e.target.name]: e.target.value
@@ -18,8 +18,15 @@ const Notes = (props) => {
     const context = useContext(NoteContext)
     const { notes,getNotes,editNote } = context;
     useEffect(() => {
-        getNotes();
-    }, [notes])
+        if(localStorage.getItem('token')!=null)
+       {
+         getNotes();
+         
+       }
+       else{
+         navigate('/login')
+       } 
+    },[notes])
 
     const ref = useRef(null);
    
@@ -40,7 +47,7 @@ const Notes = (props) => {
     return (
         <div>
             <AddNote showAlert={props.showAlert}/>
-
+              
 
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
 

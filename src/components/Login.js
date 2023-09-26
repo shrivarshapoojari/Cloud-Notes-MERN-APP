@@ -17,6 +17,7 @@ const Login = (props) => {
             headers: {
                 "Content-Type": "application/json"
 
+
             },
             body:JSON.stringify({email:credential.email,password:credential.password})
 
@@ -25,19 +26,22 @@ const Login = (props) => {
         const json = await response.json()
         console.log(json)
         console.log(json.success)
-        if(json.success=='true'){
+        if(json.success===true)
+        {
                // save authtoken and redirect
-               localStorage.setItem('token',json.authtoken)
-               navigate('/');
+              window.localStorage.setItem('token',json.authtoken)
                props.showAlert("Logged in Succesfully","success")
+               navigate('/home');
         }
 
-        if(json.success=='false'){
+        if(json.success===false){
+           
             props.showAlert("Invalid Credentials","danger")
         }
     }
     return (
         <div>
+            <h1 className='my-2'>Please Login to Continue to Cloud Note</h1>
             <form >
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
