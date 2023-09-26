@@ -1,14 +1,18 @@
 import React from 'react'
 import { useState } from 'react';
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import UserContext from '../context/users/UserContext'
 
 const Login = (props) => {
-    const [credential,setCredential]=useState({email:"",password:""})
-    const onChange=(e)=>{
-        setCredential({...credential,[e.target.name]:e.target.value})
+    const [credential, setCredential] = useState({ email: "", password: "" })
+    const onChange = (e) => {
+        setCredential({ ...credential, [e.target.name]: e.target.value })
     }
-    let navigate=useNavigate();
+    let navigate = useNavigate();
 
+    const usercontext = useContext(UserContext);
+    const { username, setuser } = usercontext;
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,24 +23,24 @@ const Login = (props) => {
 
 
             },
-            body:JSON.stringify({email:credential.email,password:credential.password})
+            body: JSON.stringify({ email: credential.email, password: credential.password })
 
 
         });
         const json = await response.json()
         console.log(json)
+        setuser(json.username)
         console.log(json.success)
-        if(json.success===true)
-        {
-               // save authtoken and redirect
-              window.localStorage.setItem('token',json.authtoken)
-               props.showAlert("Logged in Succesfully","success")
-               navigate('/home');
+        if (json.success === true) {
+            // save authtoken and redirect
+            window.localStorage.setItem('token', json.authtoken)
+            props.showAlert("Logged in Succesfully", "success")
+            navigate('/home');
         }
 
-        if(json.success===false){
-           
-            props.showAlert("Invalid Credentials","danger")
+        if (json.success === false) {
+
+            props.showAlert("Invalid Credentials", "danger")
         }
     }
     return (
@@ -45,8 +49,8 @@ const Login = (props) => {
             <form >
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={credential.email} onChange={onChange}/>
-                     
+                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={credential.email} onChange={onChange} />
+
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputPassword1" className="form-label" >Password</label>

@@ -1,9 +1,16 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useContext } from 'react';
+import UserContext from '../context/users/UserContext'
+
 
 const SignUp = (props) => {
-
+ 
   const [credential,setCredential]=useState({ username:"",email:"",password:""})
+
+  const usercontext=useContext(UserContext);
+  const {username,setuser}=usercontext;
+ 
   
   
   const onChange=(e)=>{
@@ -52,8 +59,8 @@ const SignUp = (props) => {
             <form>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
-                    <input type="email" className="form-control" id="username" name='username' aria-describedby="emailHelp" value={credential.name} onChange={onChange}/>
-                     
+                    <input type="email" className="form-control" id="username" name='username' aria-describedby="emailHelp" value={credential.username} onChange={onChange}/>
+                     {setuser(credential.username)}
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>

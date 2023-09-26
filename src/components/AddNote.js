@@ -3,11 +3,15 @@ import { useContext } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import { useState } from 'react';
 
+import UserContext from '../context/users/UserContext';
+
 const AddNote = (props) => {
 
-    const context = useContext(NoteContext)
+    const context = useContext(NoteContext);
+    const usercontext=useContext(UserContext);
     const { addNote } = context;
-
+    const{username ,setuser}=usercontext;
+    
     const [note,setNote] = useState({
         title:" ",
         description:" ",
@@ -46,6 +50,7 @@ const AddNote = (props) => {
     return (
         <div>
             <div>
+                <h1>Welcome {username}</h1>
                 <div className="container my-3">
                     <h1>Add a Note </h1>
                     <form>

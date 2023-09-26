@@ -14,6 +14,7 @@ import {
   Route
 } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
+import UserState from './context/users/UserState';
 
 
 
@@ -41,6 +42,7 @@ export default function App() {
   return (
     <>
       <NoteState>
+        <UserState>
 
         <BrowserRouter>
 
@@ -65,7 +67,7 @@ export default function App() {
 
 
         </BrowserRouter>
-
+        </UserState>
       </NoteState>
 
     </>
