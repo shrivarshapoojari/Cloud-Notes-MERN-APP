@@ -1,10 +1,11 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Home from './components/Home';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Alert from './components/Alert';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
+ 
 
 import {
 
@@ -14,7 +15,29 @@ import {
 } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
 
+
+
+
+
 export default function App() {
+
+
+  const[alert,setAlert]=useState(null);
+
+
+
+  const showAlert=(message,type)=>{
+    setAlert({
+      msg:message,
+      type:type
+    })
+    setTimeout(()=>{
+
+      setAlert(null);
+
+    },2000)
+
+  }
   return (
     <>
       <NoteState>
@@ -22,16 +45,16 @@ export default function App() {
         <BrowserRouter>
 
           <Navbar />
-          <Alert message={"HEllo I am Alert"}/>
+          <Alert alert={alert}/>
           <div className="container">
       
             <Routes>
             
-              <Route exact path="/" element={<Home/>}/>
-              <Route exact path="/home" element={<Home/>} />
-              <Route exact path="/about" element={<About/>} />
-              <Route exact path="/login" element={<Login/>} />
-              <Route exact path="/signup" element={<SignUp/>} />
+              <Route exact path="/" element={<Home showAlert={showAlert}/>}/>
+              <Route exact path="/home" element={<Home showAlert={showAlert}/>} />
+              <Route exact path="/about" element={<About />} />
+              <Route exact path="/login" element={<Login showAlert={showAlert}/>} />
+              <Route exact path="/signup" element={<SignUp showAlert={showAlert}/>} />
           
 
             </Routes>

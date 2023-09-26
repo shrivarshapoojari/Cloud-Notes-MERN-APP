@@ -5,7 +5,7 @@ import NoteItem from './NoteItem'
 import AddNote from './AddNote'
 
 
-const Notes = () => {
+const Notes = (props) => {
     const [note, setNote] = useState({id:"", etitle: "", edescription:"",etag:"" });
 
     const onChange = (e) => {
@@ -32,13 +32,14 @@ const Notes = () => {
     const handleUpdateNotes = (e) => {
         editNote({id:note.id,title:note.etitle,description:note.edescription,tag:note.etag});
          refclose.current.click();
+         props.showAlert("Changes Saved Succesfully",'success')
         
 
     }
 
     return (
         <div>
-            <AddNote />
+            <AddNote showAlert={props.showAlert}/>
 
 
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -88,7 +89,7 @@ const Notes = () => {
                {notes.length===0  &&  'No Notes To Display!'}
                </div>
                 {notes.map((ele) => {
-                    return <NoteItem  key={ele._id}note={ele} updateNote={updateNote} />
+                    return <NoteItem  key={ele._id}note={ele} updateNote={updateNote} showAlert={props.showAlert}/>
                 })}
             </div>
         </div>

@@ -48,6 +48,7 @@ router.post('/createuser',async (req,res)=>{
         email:req.body.email
        })
         console.log("Successfuly saved");
+        res.status(200).json({success:true,message:"User Created"})
          
     }
    catch(e)

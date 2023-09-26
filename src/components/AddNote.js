@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import { useState } from 'react';
 
-const AddNote = () => {
+const AddNote = (props) => {
 
     const context = useContext(NoteContext)
     const { addNote } = context;
@@ -30,6 +30,7 @@ const AddNote = () => {
         }
         
          await addNote(obj);
+        props.showAlert("Successfully Added New Note",'success')
          setNote({
             title:" ",
             description:" ",
