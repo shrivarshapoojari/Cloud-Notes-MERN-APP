@@ -70,8 +70,10 @@ try{
       id:user.id
     }
   }
+  const username=user.name;
+  const useremail=user.email;
   const authtoken=jwt.sign(data,JWT_SECRET)
-   res.json({success:true,authtoken:authtoken});
+   res.json({success:true,authtoken:authtoken,username:username,useremail:useremail});
 }
 catch(e)
 {
@@ -112,6 +114,7 @@ router.post('/login',async(req,res)=>{
             return res.status(400).json({success:false,error:"Credentials are Not Mactching"})
           }
           const username=user.name;
+          const useremail=user.email;
           const passwordCompare= await bcrypt.compare(password,user.password)
           if(!passwordCompare)
           {
@@ -124,7 +127,7 @@ router.post('/login',async(req,res)=>{
           }
           const authtoken=jwt.sign(data,JWT_SECRET)
           
-           res.json({success:true,authtoken:authtoken,username:username});
+           res.json({success:true,authtoken:authtoken,username:username,useremail:useremail});
         }  catch(e)
         {
          console.log(e);

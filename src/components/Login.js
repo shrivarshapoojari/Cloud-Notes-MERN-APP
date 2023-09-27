@@ -1,8 +1,8 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react';
-import UserContext from '../context/users/UserContext'
+
+import { Link } from 'react-router-dom';
 
 const Login = (props) => {
     const [credential, setCredential] = useState({ email: "", password: "" })
@@ -11,8 +11,7 @@ const Login = (props) => {
     }
     let navigate = useNavigate();
 
-    const usercontext = useContext(UserContext);
-    const { username, setuser } = usercontext;
+   
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -29,7 +28,12 @@ const Login = (props) => {
         });
         const json = await response.json()
         console.log(json)
-        setuser(json.username)
+        // setuser(json.username)
+        let username=json.username;
+        let useremail=json.useremail;
+        
+        window.localStorage.setItem('email',useremail)
+        window.localStorage.setItem('user',username);
         console.log(json.success)
         if (json.success === true) {
             // save authtoken and redirect
@@ -59,6 +63,9 @@ const Login = (props) => {
 
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
             </form>
+            <div className="container my-3">
+            <Link to ='/signup'>Dont you have an Account?Click here to create one</Link>
+            </div>
         </div>
     )
 }

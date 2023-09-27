@@ -5,10 +5,10 @@ import { useState } from "react";
  
  const UserState = (props) => {
 
-    const [username,setUsername]=useState("Shri");
+    const [username,setUsername]=useState(null);
 
      const setuser=(word)=>{
-setUsername(word);
+        setUsername(word);
      }
 
    return (

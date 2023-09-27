@@ -1,15 +1,15 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useContext } from 'react';
-import UserContext from '../context/users/UserContext'
+ 
 
+import { Link } from 'react-router-dom';
 
 const SignUp = (props) => {
  
   const [credential,setCredential]=useState({ username:"",email:"",password:""})
 
-  const usercontext=useContext(UserContext);
-  const {username,setuser}=usercontext;
+  
+   
  
   
   
@@ -36,6 +36,11 @@ const SignUp = (props) => {
         });
         const json = await response.json()
         console.log(json)
+        let username=json.username;
+        let useremail=json.useremail;
+        
+        window.localStorage.setItem('email',useremail)
+        window.localStorage.setItem('user',username);
         if(json.success===true){
                // save authtoken and redirect
             
@@ -60,7 +65,7 @@ const SignUp = (props) => {
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
                     <input type="email" className="form-control" id="username" name='username' aria-describedby="emailHelp" value={credential.username} onChange={onChange}/>
-                     {setuser(credential.username)}
+                     
                 </div>
                 <div className="mb-3">
                     <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
@@ -74,7 +79,11 @@ const SignUp = (props) => {
                 
 
                 <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
+
             </form>
+            <div className="container my-3">
+            <Link to ='/login'>Already Existing User ? Click here to login</Link>
+            </div>
         
     </div>
   )

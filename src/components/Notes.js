@@ -6,48 +6,47 @@ import AddNote from './AddNote'
 import { useNavigate } from 'react-router-dom'
 
 const Notes = (props) => {
-    const [note, setNote] = useState({id:"", etitle: "", edescription:"",etag:"" });
-    let navigate=useNavigate();
+    const [note, setNote] = useState({ id: "", etitle: "", edescription: "", etag: "" });
+    let navigate = useNavigate();
     const onChange = (e) => {
         setNote({
             ...note, [e.target.name]: e.target.value
         })
     }
-    const refclose=useRef(null);
-   
+    const refclose = useRef(null);
+
     const context = useContext(NoteContext)
-    const { notes,getNotes,editNote } = context;
+    const { notes, getNotes, editNote } = context;
     useEffect(() => {
-        if(localStorage.getItem('token')!=null)
-       {
-         getNotes();
-         
-       }
-       else{
-         navigate('/login')
-       } 
-    },[notes])
+        if (localStorage.getItem('token') != null) {
+            getNotes();
+
+        }
+        else {
+            navigate('/login')
+        }
+    }, [notes])
 
     const ref = useRef(null);
-   
+
     const updateNote = (currentNote) => {
 
-        setNote({ id:currentNote._id ,etitle:currentNote.title,edescription:currentNote.description,etag:currentNote.tag});
+        setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag });
         ref.current.click();
-         
+
     }
     const handleUpdateNotes = (e) => {
-        editNote({id:note.id,title:note.etitle,description:note.edescription,tag:note.etag});
-         refclose.current.click();
-         props.showAlert("Changes Saved Succesfully",'success')
-        
+        editNote({ id: note.id, title: note.etitle, description: note.edescription, tag: note.etag });
+        refclose.current.click();
+        props.showAlert("Changes Saved Succesfully", 'success')
+
 
     }
 
     return (
         <div>
-            <AddNote showAlert={props.showAlert}/>
-              
+            <AddNote showAlert={props.showAlert} />
+
 
             <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
 
@@ -65,12 +64,12 @@ const Notes = (props) => {
                             <form>
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label">Title</label>
-                                    <input type="text" className="form-control" id="etitle" name='etitle' value={note.etitle} aria-describedby="emailHelp" onChange={onChange}/>
+                                    <input type="text" className="form-control" id="etitle" name='etitle' value={note.etitle} aria-describedby="emailHelp" onChange={onChange} />
 
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label">Description</label>
-                                    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} aria-describedby="emailHelp" onChange={onChange}   />
+                                    <input type="text" className="form-control" id="edescription" name='edescription' value={note.edescription} aria-describedby="emailHelp" onChange={onChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label">Tags</label>
@@ -84,8 +83,8 @@ const Notes = (props) => {
 
                         </div>
                         <div className="modal-footer">
-                            <button type="button"  ref={refclose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" disabled={ note.etitle.length<5 || note.edescription.length<5} className="btn btn-primary" onClick={handleUpdateNotes}>Save changes</button>
+                            <button type="button" ref={refclose} className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" disabled={note.etitle.length < 5 || note.edescription.length < 5} className="btn btn-primary" onClick={handleUpdateNotes}>Save changes</button>
                         </div>
                     </div>
                 </div>
@@ -93,10 +92,10 @@ const Notes = (props) => {
             <div className="row my-3">
                 <h1>Your Notes</h1>
                 <div className="container mx-2">
-               {notes.length===0  &&  'No Notes To Display!'}
-               </div>
+                    {notes.length === 0 && 'No Notes To Display!'}
+                </div>
                 {notes.map((ele) => {
-                    return <NoteItem  key={ele._id}note={ele} updateNote={updateNote} showAlert={props.showAlert}/>
+                    return <NoteItem key={ele._id} note={ele} updateNote={updateNote} showAlert={props.showAlert} />
                 })}
             </div>
         </div>

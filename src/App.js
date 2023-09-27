@@ -14,7 +14,7 @@ import {
   Route
 } from "react-router-dom";
 import NoteState from './context/notes/NoteState';
-import UserState from './context/users/UserState';
+import UserState from './context/users/UserState'; 
 
 
 
@@ -43,6 +43,7 @@ export default function App() {
     <>
       <NoteState>
         <UserState>
+          
 
         <BrowserRouter>
 
@@ -51,7 +52,7 @@ export default function App() {
           <div className="container">
       
             <Routes>
-             <Route exact path="/" element={<SignUp showAlert={showAlert}/>} />
+             <Route exact path="/" element={<Home showAlert={showAlert}/>}/>
               <Route exact path="/home" element={<Home showAlert={showAlert}/>} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login showAlert={showAlert}/>} />
@@ -67,6 +68,7 @@ export default function App() {
 
 
         </BrowserRouter>
+     
         </UserState>
       </NoteState>
 

@@ -9,7 +9,7 @@ const NoteState = (props) => {
     const notesInitial = []
 
     const [notes, setNotes] = useState(notesInitial)
-
+    const [noteCount,setNoteCount]=useState(0);
 
     // fetch all notes
 
@@ -28,6 +28,8 @@ const NoteState = (props) => {
         const json = await response.json()
 
         setNotes(json);
+       let num= notes.length;
+       setNoteCount(num);
     }
 
 
@@ -55,6 +57,7 @@ const NoteState = (props) => {
             body: JSON.stringify(obj),
         });
         const json = await response.json()
+        
 
     }
 
@@ -121,7 +124,7 @@ const NoteState = (props) => {
 
 
     return (
-        <NoteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote, getNotes }}>
+        <NoteContext.Provider value={{ notes, setNotes, addNote, deleteNote, editNote, getNotes,noteCount }}>
             {props.children}
         </NoteContext.Provider>
 
