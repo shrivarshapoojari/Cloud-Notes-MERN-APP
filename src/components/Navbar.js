@@ -7,7 +7,7 @@ import { useRef } from 'react';
 
 
 
-export default function Navbar() {
+export default function Navbar(props) {
   const context = useContext(NoteContext)
   const{noteCount}=context;
 
@@ -26,7 +26,9 @@ export default function Navbar() {
   let navigate=useNavigate();
   const handleLogout=()=>{
     window.localStorage.removeItem('token');
+    props.showAlert("Logged Out Succesfully", "success")
     navigate('/login')
+    
 
   }
   

@@ -59,32 +59,49 @@ const SignUp = (props) => {
       }
 
   return (
-    < div className='container'>
-          <h1 className='my-2'>Please Sign Up to continue to Cloud Note</h1>
-            <form>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Name</label>
-                    <input type="email" className="form-control" id="username" name='username' aria-describedby="emailHelp" value={credential.username} onChange={onChange}/>
-                     
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={credential.email} onChange={onChange}/>
-                     
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label" >Password</label>
-                    <input type="password" className="form-control" id="password" name='password' value={credential.password} onChange={onChange} />
-                </div>
-                
-
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-
-            </form>
-            <div className="container my-3">
-            <Link to ='/login'>Already Existing User ? Click here to login</Link>
-            </div>
-        
+    <div className="signup-container">
+      <h1 className="signup-header">Please Sign Up to continue to Cloud Note</h1>
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <div className="form-group">
+          <label htmlFor="username">Name</label>
+          <input
+            type="text"
+            className="form-control"
+            id="username"
+            name="username"
+            value={credential.username}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="email">Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            id="email"
+            name="email"
+            value={credential.email}
+            onChange={onChange}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            className="form-control"
+            id="password"
+            name="password"
+            value={credential.password}
+            onChange={onChange}
+          />
+        </div>
+        <button type="submit" className="btn btn-primary signup-button">
+          Submit
+        </button>
+      </form>
+      <div className="login-link">
+        <Link to="/login">Already Existing User? Click here to login</Link>
+      </div>
     </div>
   )
 }

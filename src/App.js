@@ -47,7 +47,7 @@ export default function App() {
 
         <BrowserRouter>
 
-          <Navbar />
+          <Navbar showAlert={showAlert} />
           <Alert alert={alert}/>
           <div className="container">
       

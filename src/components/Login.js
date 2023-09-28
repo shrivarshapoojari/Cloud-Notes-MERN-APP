@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
-
+ 
 import { Link } from 'react-router-dom';
 
 const Login = (props) => {
@@ -48,25 +48,40 @@ const Login = (props) => {
         }
     }
     return (
-        <div>
-            <h1 className='my-2'>Please Login to Continue to Cloud Note</h1>
-            <form >
-                <div className="mb-3">
-                    <label htmlFor="exampleInputEmail1" className="form-label">Email address</label>
-                    <input type="email" className="form-control" id="email" name='email' aria-describedby="emailHelp" value={credential.email} onChange={onChange} />
-
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="exampleInputPassword1" className="form-label" >Password</label>
-                    <input type="password" className="form-control" id="password" name='password' value={credential.password} onChange={onChange} />
-                </div>
-
-                <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Submit</button>
-            </form>
-            <div className="container my-3">
-            <Link to ='/signup'>Dont you have an Account?Click here to create one</Link>
-            </div>
+        <div className="login-container">
+        <h1 className="login-header">Login to Cloud Note</h1>
+        <form className="login-form" onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="email">Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              id="email"
+              name="email"
+              value={credential.email}
+              onChange={onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              className="form-control"
+              id="password"
+              name="password"
+              value={credential.password}
+              onChange={onChange}
+            />
+          </div>
+          <button type="submit" className="btn btn-primary login-button">
+            Submit
+          </button>
+        </form>
+        <div className="signup-link">
+          <Link to="/signup">Don't have an account? Click here to create one</Link>
         </div>
+      </div>
+
     )
 }
 

@@ -20,7 +20,7 @@ router.post('/createuser',async (req,res)=>{
     if(!name || !email || !password)
     {
         return res.status(400).json({
-            success:"false",
+            success:false,
             message:"Every Field is required"
         })
     }

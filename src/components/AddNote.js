@@ -73,22 +73,22 @@ const abortSpeech=()=>{
         <div>
             <div>
                 <h1>Welcome {user}</h1>
-                <div className="container my-3">
+                <div className="container my-2">
                     <h1>Add a Note </h1>
                     <form>
-                        <div className="mb-3">
+                        <div className="mb-2">
                             <label htmlFor="title" className="form-label">Title</label>
                             <input type="text" className="form-control" id="title" name='title' aria-describedby="emailHelp" onChange={onChange} value={note.title}  />
                             
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-2">
                             <label htmlFor="description" className="form-label">Description</label>
                             <i className="fa-solid fa-microphone mx-3" onClick={handleDeSpeech}></i>
                             <i className="fa-solid fa-square mx-3" onClick={abortSpeech}></i>
-                            <textarea className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange}  value={note.description} rows={4}/>
+                            <input className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange}  value={note.description}/>
                             
                         </div>
-                        <div className="mb-3">
+                        <div className="mb-2">
                             <label htmlFor="tag" className="form-label">Tags</label>
                             <input type="text" className="form-control" id="tag" name='tag' aria-describedby="emailHelp" onChange={onChange}  value={note.tag}  />
                         </div>
