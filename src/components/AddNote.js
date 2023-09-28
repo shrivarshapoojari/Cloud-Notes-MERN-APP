@@ -2,8 +2,9 @@ import React from 'react'
 import { useContext } from 'react';
 import NoteContext from '../context/notes/NoteContext';
 import { useState } from 'react';
+import annyang from 'annyang';
 
- 
+  
 
 const AddNote = (props) => {
 
@@ -19,6 +20,7 @@ const AddNote = (props) => {
         tag:" "
     })
     const onChange = (e) => {
+
         setNote({
             ...note, [e.target.name]: e.target.value
         })
@@ -43,9 +45,28 @@ const AddNote = (props) => {
         })
         
     }
-  
+    
+   const handleDeSpeech=()=>{
+      if(annyang){
+        annyang.setLanguage('en-IN');
+        annyang.start();
+        annyang.addCallback('result', handleSpeech);
+        }
+   }
+const abortSpeech=()=>{
+    annyang.abort();
 
-
+}
+    
+   const handleSpeech = (userSaid) => {
+      setNote({
+        ...note,description:userSaid+" "
+      })
+         
+ 
+    }
+   
+   
 
 
     return (
@@ -58,11 +79,14 @@ const AddNote = (props) => {
                         <div className="mb-3">
                             <label htmlFor="title" className="form-label">Title</label>
                             <input type="text" className="form-control" id="title" name='title' aria-describedby="emailHelp" onChange={onChange} value={note.title}  />
-
+                            
                         </div>
                         <div className="mb-3">
                             <label htmlFor="description" className="form-label">Description</label>
-                            <input type="text" className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange}  value={note.description} />
+                            <i className="fa-solid fa-microphone mx-3" onClick={handleDeSpeech}></i>
+                            <i className="fa-solid fa-square mx-3" onClick={abortSpeech}></i>
+                            <textarea className="form-control" id="description" name='description' aria-describedby="emailHelp" onChange={onChange}  value={note.description} rows={4}/>
+                            
                         </div>
                         <div className="mb-3">
                             <label htmlFor="tag" className="form-label">Tags</label>
@@ -80,7 +104,7 @@ const AddNote = (props) => {
                         
                     </form>
                 </div>
-
+             
             </div>
 
         </div>
