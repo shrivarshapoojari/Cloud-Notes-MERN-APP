@@ -42,7 +42,7 @@ const Login = (props) => {
             navigate('/home');
         }
 
-        if (json.success === false) {
+        if (json.success ==false) {
 
             props.showAlert("Invalid Credentials", "danger")
         }

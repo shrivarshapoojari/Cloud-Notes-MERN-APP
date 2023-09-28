@@ -28,7 +28,7 @@ router.post('/createuser',async (req,res)=>{
      var validEmail=emailValidator.validate(email);
      if(!validEmail){
         return res.json({
-            success:"false",
+            success:false,
             message:"Plzz provide validemail"
         })
      }
@@ -93,7 +93,7 @@ router.post('/login',async(req,res)=>{
         if(!email ||!password)
         {
           return res.status(400).json({
-            success:"false",
+            success:false,
             message:"Every Field is required"
         })
         }
@@ -103,7 +103,7 @@ router.post('/login',async(req,res)=>{
         var validEmail=emailValidator.validate(email);
         if(!validEmail){
            return res.status(400).json({
-               success:"false",
+               success:false,
                message:"Plzz provide validemail"
            })
         }
