@@ -18,7 +18,8 @@ const Notes = (props) => {
     const context = useContext(NoteContext)
     const { notes, getNotes, editNote } = context;
     useEffect(() => {
-        if (localStorage.getItem('token') != null) {
+        
+        if (localStorage.getItem('token')) {
             getNotes();
 
         }
@@ -27,12 +28,13 @@ const Notes = (props) => {
         }
     }, [notes])
 
-    const ref = useRef(null);
+    const uref = useRef(null);
 
     const updateNote = (currentNote) => {
 
         setNote({ id: currentNote._id, etitle: currentNote.title, edescription: currentNote.description, etag: currentNote.tag });
-        ref.current.click();
+        uref.current.click();
+        console.log(uref.current)
 
     }
     const handleUpdateNotes = (e) => {
@@ -48,8 +50,8 @@ const Notes = (props) => {
             <AddNote showAlert={props.showAlert} />
 
 
-            <button type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
-
+            <button type="button" ref={uref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    
             </button>
 
 

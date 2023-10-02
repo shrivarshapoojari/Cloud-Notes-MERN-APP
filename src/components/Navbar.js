@@ -17,6 +17,7 @@ export default function Navbar(props) {
    const profileIcon=useRef(null);
    const handleProfileClick=()=>{
        profileIcon.current.click();
+       console.log("Profile")
    }
 
   let location =useLocation();
@@ -69,12 +70,12 @@ export default function Navbar(props) {
          {/*  --------------------------------- Profile page------------------------------ */}
          <div>
        
-<button type="button" className="btn btn-primary d-none" ref={profileIcon} data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
+<button type="button" className="btn btn-primary d-none" ref={profileIcon} data-bs-toggle="modal" data-bs-target="#exampleModal1" >
+
 </button>
 
  
-<div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div className="modal fade" id="exampleModal1" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
   <div className="modal-dialog">
     <div className="modal-content">
       <div className="modal-header">
